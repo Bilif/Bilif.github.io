@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Every failure is leading towards success.">
+    <meta name="keywords"  content="BY, BY Blog, QZ的博客, 乔智, QZ, Web, React, iPhone">
+    <meta name="theme-color" content="#000000">
+    
+    <title>ESLint语法检测工具 - QZ的博客 | BY Blog</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <!-- Safari Webpage Icon    by-BY -->
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="http://localhost:4000/2019/05/08/ESLint%E8%AF%AD%E6%B3%95%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">QZ Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/about/">About</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/">Tags</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    var __HuxNav__ = {
+        close: function(){
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        },
+        open: function(){
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle/$collapse will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+     *
+     * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
+</script>
+
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/post-bg-ios9-web.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('/img/post-bg-ios9-web.jpg')
+    }
+
+    
+</style>
+<header class="intro-header" >
+    <div class="header-mask"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#ESLint简介" title="ESLint简介">ESLint简介</a>
+                        
+                        <a class="tag" href="/tags/#ESlint特点" title="ESlint特点">ESlint特点</a>
+                        
+                        <a class="tag" href="/tags/#sublime中如何安装ESLint" title="sublime中如何安装ESLint">sublime中如何安装ESLint</a>
+                        
+                        <a class="tag" href="/tags/#gulp中如何集成ESlint" title="gulp中如何集成ESlint">gulp中如何集成ESlint</a>
+                        
+                        <a class="tag" href="/tags/#总结" title="总结">总结</a>
+                        
+                    </div>
+                    <h1>ESLint语法检测工具</h1>
+                    
+                    
+                    <h2 class="subheading">教你如何使用ESLint</h2>
+                    
+                    <span class="meta">Posted by BY on May 8, 2019</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+				<h1 id="eslint简介">ESLint简介</h1>
+<p>ESLint是一款代码规格检查工具，能够有效的保证团队的代码质量,避免低级代码。</p>
+
+<h1 id="eslint特点">ESlint特点</h1>
+<ul>
+  <li>默认规则包含所有JSHint、JSLint中存在的所有规则，易迁移；</li>
+  <li>可以设置警告（1），错误（2），关闭（0）三种规格的配置；</li>
+  <li>包含代码风格检测；</li>
+  <li>支持插件扩展、自定义规则；</li>
+</ul>
+
+<h1 id="sublime中如何安装eslint">sublime中如何安装ESLint</h1>
+<h6 id="1环境准备">1.环境准备</h6>
+<ul>
+  <li>首先你得有sublime text3编辑器，并且已经安装了package control；</li>
+  <li>其次你得有node环境，如果不知道node环境如何安装，请点击前往 <a href="http://blog.csdn.net/zhyh1986/article/details/39249655">node</a>；</li>
+  <li>好了，以上环境准备好了就可以按照下面步骤一步步来了。</li>
+</ul>
+
+<h6 id="2安装eslint包模块">2.安装eslint包模块</h6>
+<p>可以使用npm或cnpm（淘宝）来全局安装eslint。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm install eslint -g
+</code></pre></div></div>
+<h6 id="3安装sublimelinter插件">3.安装sublimeLinter插件</h6>
+<p>在sublime中打开package control（快捷键ctrl + shift + p）选择install package 然后在搜索框中搜索sublimeLinter插件，点击即可安装。
+<img src="http://upload-images.jianshu.io/upload_images/4190280-8f7e583f8a9c2182.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png" /></p>
+<h6 id="4安装sublimelinter-contrib-eslint插件">4.安装sublimeLinter-contrib-eslint插件</h6>
+<p>同样的在package control中搜索sublimeLinter-contrib-eslint插件来进行安装</p>
+
+<p><img src="http://upload-images.jianshu.io/upload_images/4190280-8cdff41f8c548a83.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png" /></p>
+<h6 id="5集成sublimelinter的配置文件">5.集成sublimeLinter的配置文件</h6>
+<p>点击preferences ==&gt; package settings ==&gt; SublimeLinter ==&gt; Settings-user 打开配置文件，查询paths关键字，找到paths下面的<em>windows</em>字段，修改eslint的全局命令：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"paths": {
+            "linux": [],
+            "osx": [],
+            "windows": [
+                "**/nodejs/eslint.cmd"
+            ]
+        },
+</code></pre></div></div>
+<h6 id="6创建eslintrc语法规则文件">6.创建.eslintrc语法规则文件</h6>
+<p>当当当，终于到了最后一步拉。在自己的项目工程根目录下面创建.eslintrc语法规则配置文件。</p>
+<ul>
+  <li>方法一: 在命令行里输入<code class="highlighter-rouge">eslint --init</code>命令进行自主选择创建文件。命令行会根据用户自己选择的风格来创建文件
+<img src="http://upload-images.jianshu.io/upload_images/4190280-5bdb8bb2b64b83b5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png" /></li>
+  <li>方法二: 在命令行里输入’echo {} &gt; .eslintrc’命令直接创建.eslintrc文件。然后在.eslintrc文件中可以直接复制以下代码,具体的rule配置可以根据自己的项目选择性的修改：
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+"globals": {
+  "$": true,                                //zepto
+  "define": true,                           //requirejs
+  "require": true                           //requirejs
+},
+"env": {
+  "browser": true                           //执行环境 浏览器
+},
+"rules": {
+  //官方文档 http://eslint.org/docs/rules/
+  //警告
+  // "quotes": [0, "single"],                  //建议使用单引号
+  // "no-inner-declarations": [0, "both"],     //不建议在{}代码块内部声明变量或函数
+  "no-extra-boolean-cast": 1,               //多余的感叹号转布尔型
+  "no-extra-semi": 1,                       //多余的分号
+  "no-extra-parens": 1,                     //多余的括号
+  "no-empty": 1,                            //空代码块
+  "no-use-before-define": [1, "nofunc"],    //使用前未定义
+  "complexity": [1, 10],                    //圈复杂度大于10 警告
+
+  //常见错误
+  "comma-dangle": [2, "never"],             //定义数组或对象最后多余的逗号
+  "no-debugger": 2,                         //debugger 调试代码未删除
+  "no-constant-condition": 2,               //常量作为条件
+  "no-dupe-args": 2,                        //参数重复
+  "no-dupe-keys": 2,                        //对象属性重复
+  "no-duplicate-case": 2,                   //case重复
+  "no-empty-character-class": 2,            //正则无法匹配任何值
+  "no-invalid-regexp": 2,                   //无效的正则
+  "no-func-assign": 2,                      //函数被赋值
+  "valid-typeof": 2,                        //无效的类型判断
+  "no-unreachable": 2,                      //不可能执行到的代码
+  "no-unexpected-multiline": 2,             //行尾缺少分号可能导致一些意外情况
+  "no-sparse-arrays": 2,                    //数组中多出逗号
+  "no-shadow-restricted-names": 2,          //关键词与命名冲突
+  "no-undef": 2,                            //变量未定义
+  "no-unused-vars": 2,                      //变量定义后未使用
+  "no-cond-assign": 2,                      //条件语句中禁止赋值操作
+  "no-native-reassign": 2,                  //禁止覆盖原生对象
+
+  //代码风格优化
+  "no-else-return": 1,                      //在else代码块中return，else是多余的
+  "no-multi-spaces": 1,                     //不允许多个空格
+  "key-spacing": [1, {"beforeColon": false, "afterColon": true}],//object直接量建议写法 : 后一个空格前面不留空格
+  "block-scoped-var": 2,                    //变量应在外部上下文中声明，不应在{}代码块中
+  "consistent-return": 2,                   //函数返回值可能是不同类型
+  "accessor-pairs": 2,                      //object getter/setter方法需要成对出现
+  "dot-location": [2, "property"],          //换行调用对象方法  点操作符应写在行首
+  "no-lone-blocks": 2,                      //多余的{}嵌套
+  "no-empty-label": 2,                      //无用的标记
+  "no-extend-native": 2,                    //禁止扩展原生对象
+  "no-floating-decimal": 2,                 //浮点型需要写全 禁止.1 或 2.写法
+  "no-loop-func": 2,                        //禁止在循环体中定义函数
+  "no-new-func": 2,                         //禁止new Function(...) 写法
+  "no-self-compare": 2,                     //不允与自己比较作为条件
+  "no-sequences": 2,                        //禁止可能导致结果不明确的逗号操作符
+  "no-throw-literal": 2,                    //禁止抛出一个直接量 应是Error对象
+  "no-return-assign": [2, "always"],        //不允return时有赋值操作
+  "no-redeclare": [2, {"builtinGlobals": true}],//不允许重复声明
+  "no-unused-expressions": [2, {"allowShortCircuit": true, "allowTernary": true}],//不执行的表达式
+  "no-useless-call": 2,                     //无意义的函数call或apply
+  "no-useless-concat": 2,                   //无意义的string concat
+  "no-void": 2,                             //禁用void
+  "no-with": 2,                             //禁用with
+  "space-infix-ops": 2,                     //操作符前后空格
+  "valid-jsdoc": [2, {"requireParamDescription": true, "requireReturnDescription": true}],//jsdoc
+  "no-warning-comments": [2, { "terms": ["todo", "fixme", "any other term"], "location": "anywhere" }],//标记未写注释
+  "curly": 1                                //if、else、while、for代码块用{}包围
+}
+}
+</code></pre></div>    </div>
+    <h6 id="7成功后界面预览">7.成功后界面预览</h6>
+    <p>根据语法规则的配置，eslint会自动检测语法错误，并高亮显示，是不是很酷呢~
+<img src="http://upload-images.jianshu.io/upload_images/4190280-e4da058dd1b91da6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png" /></p>
+    <h1 id="gulp中如何集成eslint">gulp中如何集成ESlint</h1>
+    <p>通过自动化构建工具gulpe来集成eslint也是非常方便的。</p>
+    <h6 id="1安装gulp-eslint包模块">1.安装gulp-eslint包模块</h6>
+    <p>通过npm 或者 cnpm( 淘宝）来全局安装gulp-eslint 包模块.</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm install gulp-eslint -g
+</code></pre></div>    </div>
+    <h6 id="2编写gulp配置文件">2.编写gulp配置文件</h6>
+    <p>然后在自己的项目的gulp.js配置文件中编写eslint的任务即可。</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var eslint = require('gulp-eslint');
+gulp.task('eslint-task', function(){
+    return gulp.src(['app/**/*.js']) //指定的校验路径
+    .pipe(eslint({configFile:"./.eslintrc"})) //使用你的eslint校验文件
+    .pipe(eslint.format())
+ });
+gulp.task('default', ['eslint-task']);
+</code></pre></div>    </div>
+    <h1 id="总结">总结</h1>
+    <p>使用eslint能够很大程度上避免程序员编码过程中出现的低级错误，提高自己的代码水平。一个项目中，代码的质量，健壮性尤为重要。eslint能够让前端工程工程化更进一步。</p>
+  </li>
+</ul>
+
+
+                <hr style="visibility: hidden;">
+
+                <ul class="pager">
+                    
+                    
+                </ul>
+
+
+                <!--Gitalk评论start  -->
+                
+                <!-- 引入Gitalk评论插件  -->
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+                <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+                <div id="gitalk-container"></div>
+                <!-- 引入一个生产md5的js，用于对id值进行处理，防止其过长 -->
+                <!-- Thank DF:https://github.com/NSDingFan/NSDingFan.github.io/issues/3#issuecomment-407496538 -->
+                <script src="/js/md5.min.js"></script>
+                <script type="text/javascript">
+                    var gitalk = new Gitalk({
+                    clientID: '84120b4528a0511d3ecc',
+                    clientSecret: 'c8bdee34e248d64a4040b6ea0632c74380d0c381',
+                    repo: 'bilif.github.io',
+                    owner: 'bilif',
+                    admin: ['bilif'],
+                    distractionFreeMode: true,
+                    id: md5(location.pathname),
+                    });
+                    gitalk.render('gitalk-container');
+                </script>
+                
+                <!-- Gitalk end -->
+
+                
+
+            </div>  
+
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+        			</div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                        <li><a href="https://juejin.im/user/58b5198cac502e00589a6388">掘金·BY</a></li>
+                    
+                        <li><a href="https://www.jianshu.com/u/94a557704b3e">简书·BY</a></li>
+                    
+                        <li><a href="https://apple.com">Apple</a></li>
+                    
+                        <li><a href="https://developer.apple.com/">Apple Developer</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        // BY Fix:去除标题前的‘#’ issues:<https://github.com/qiubaiying/qiubaiying.github.io/issues/137>
+        // anchors.options = {
+        //   visible: 'always',
+        //   placement: 'right',
+        //   icon: '#'
+        // };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    <!-- add jianshu add target = "_blank" to <a> QZ BY -->
+                    
+                            <li>
+                                <a target="_blank" href="https://www.jianshu.com/u/attributer">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa  fa-stack-1x fa-inverse">简</i>
+                                    </span>
+                                </a>
+                            </li>
+                    
+                    
+
+                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
+                    
+                    
+
+
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/Bilif">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; QZ Blog 2019
+                    <br>
+                    Theme on <a href="https://github.com/Bilif/Bilif.github.io.git">GitHub</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=Bilif&repo=Bilif.github.io&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+<!-- Service Worker -->
+
+<script type="text/javascript">
+    if(navigator.serviceWorker){
+        // For security reasons, a service worker can only control the pages that are in the same directory level or below it. That's why we put sw.js at ROOT level.
+        navigator.serviceWorker
+            .register('/sw.js')
+            .then((registration) => {console.log('Service Worker Registered. ', registration)})
+            .catch((error) => {console.log('ServiceWorker registration failed: ', error)})
+    }
+</script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/ 
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers   
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async('/js/jquery.tagcloud.js',function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        var P = $('div.post-container'),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;    
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/apple-touch-icon.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>QZ Blog</title>
+    <description>Every failure is leading towards success.</description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Wed, 08 May 2019 14:59:40 +0800</pubDate>
+    <lastBuildDate>Wed, 08 May 2019 14:59:40 +0800</lastBuildDate>
+    <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>ESLint语法检测工具</title>
+        <description>&lt;h1 id=&quot;eslint简介&quot;&gt;ESLint简介&lt;/h1&gt;
+&lt;p&gt;ESLint是一款代码规格检查工具，能够有效的保证团队的代码质量,避免低级代码。&lt;/p&gt;
+
+&lt;h1 id=&quot;eslint特点&quot;&gt;ESlint特点&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;默认规则包含所有JSHint、JSLint中存在的所有规则，易迁移；&lt;/li&gt;
+  &lt;li&gt;可以设置警告（1），错误（2），关闭（0）三种规格的配置；&lt;/li&gt;
+  &lt;li&gt;包含代码风格检测；&lt;/li&gt;
+  &lt;li&gt;支持插件扩展、自定义规则；&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;sublime中如何安装eslint&quot;&gt;sublime中如何安装ESLint&lt;/h1&gt;
+&lt;h6 id=&quot;1环境准备&quot;&gt;1.环境准备&lt;/h6&gt;
+&lt;ul&gt;
+  &lt;li&gt;首先你得有sublime text3编辑器，并且已经安装了package control；&lt;/li&gt;
+  &lt;li&gt;其次你得有node环境，如果不知道node环境如何安装，请点击前往 &lt;a href=&quot;http://blog.csdn.net/zhyh1986/article/details/39249655&quot;&gt;node&lt;/a&gt;；&lt;/li&gt;
+  &lt;li&gt;好了，以上环境准备好了就可以按照下面步骤一步步来了。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h6 id=&quot;2安装eslint包模块&quot;&gt;2.安装eslint包模块&lt;/h6&gt;
+&lt;p&gt;可以使用npm或cnpm（淘宝）来全局安装eslint。&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;npm install eslint -g
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h6 id=&quot;3安装sublimelinter插件&quot;&gt;3.安装sublimeLinter插件&lt;/h6&gt;
+&lt;p&gt;在sublime中打开package control（快捷键ctrl + shift + p）选择install package 然后在搜索框中搜索sublimeLinter插件，点击即可安装。
+&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/4190280-8f7e583f8a9c2182.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;Paste_Image.png&quot; /&gt;&lt;/p&gt;
+&lt;h6 id=&quot;4安装sublimelinter-contrib-eslint插件&quot;&gt;4.安装sublimeLinter-contrib-eslint插件&lt;/h6&gt;
+&lt;p&gt;同样的在package control中搜索sublimeLinter-contrib-eslint插件来进行安装&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/4190280-8cdff41f8c548a83.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;Paste_Image.png&quot; /&gt;&lt;/p&gt;
+&lt;h6 id=&quot;5集成sublimelinter的配置文件&quot;&gt;5.集成sublimeLinter的配置文件&lt;/h6&gt;
+&lt;p&gt;点击preferences ==&amp;gt; package settings ==&amp;gt; SublimeLinter ==&amp;gt; Settings-user 打开配置文件，查询paths关键字，找到paths下面的&lt;em&gt;windows&lt;/em&gt;字段，修改eslint的全局命令：&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&quot;paths&quot;: {
+            &quot;linux&quot;: [],
+            &quot;osx&quot;: [],
+            &quot;windows&quot;: [
+                &quot;**/nodejs/eslint.cmd&quot;
+            ]
+        },
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h6 id=&quot;6创建eslintrc语法规则文件&quot;&gt;6.创建.eslintrc语法规则文件&lt;/h6&gt;
+&lt;p&gt;当当当，终于到了最后一步拉。在自己的项目工程根目录下面创建.eslintrc语法规则配置文件。&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;方法一: 在命令行里输入&lt;code class=&quot;highlighter-rouge&quot;&gt;eslint --init&lt;/code&gt;命令进行自主选择创建文件。命令行会根据用户自己选择的风格来创建文件
+&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/4190280-5bdb8bb2b64b83b5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;Paste_Image.png&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;方法二: 在命令行里输入’echo {} &amp;gt; .eslintrc’命令直接创建.eslintrc文件。然后在.eslintrc文件中可以直接复制以下代码,具体的rule配置可以根据自己的项目选择性的修改：
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
+&quot;globals&quot;: {
+  &quot;$&quot;: true,                                //zepto
+  &quot;define&quot;: true,                           //requirejs
+  &quot;require&quot;: true                           //requirejs
+},
+&quot;env&quot;: {
+  &quot;browser&quot;: true                           //执行环境 浏览器
+},
+&quot;rules&quot;: {
+  //官方文档 http://eslint.org/docs/rules/
+  //警告
+  // &quot;quotes&quot;: [0, &quot;single&quot;],                  //建议使用单引号
+  // &quot;no-inner-declarations&quot;: [0, &quot;both&quot;],     //不建议在{}代码块内部声明变量或函数
+  &quot;no-extra-boolean-cast&quot;: 1,               //多余的感叹号转布尔型
+  &quot;no-extra-semi&quot;: 1,                       //多余的分号
+  &quot;no-extra-parens&quot;: 1,                     //多余的括号
+  &quot;no-empty&quot;: 1,                            //空代码块
+  &quot;no-use-before-define&quot;: [1, &quot;nofunc&quot;],    //使用前未定义
+  &quot;complexity&quot;: [1, 10],                    //圈复杂度大于10 警告
+
+  //常见错误
+  &quot;comma-dangle&quot;: [2, &quot;never&quot;],             //定义数组或对象最后多余的逗号
+  &quot;no-debugger&quot;: 2,                         //debugger 调试代码未删除
+  &quot;no-constant-condition&quot;: 2,               //常量作为条件
+  &quot;no-dupe-args&quot;: 2,                        //参数重复
+  &quot;no-dupe-keys&quot;: 2,                        //对象属性重复
+  &quot;no-duplicate-case&quot;: 2,                   //case重复
+  &quot;no-empty-character-class&quot;: 2,            //正则无法匹配任何值
+  &quot;no-invalid-regexp&quot;: 2,                   //无效的正则
+  &quot;no-func-assign&quot;: 2,                      //函数被赋值
+  &quot;valid-typeof&quot;: 2,                        //无效的类型判断
+  &quot;no-unreachable&quot;: 2,                      //不可能执行到的代码
+  &quot;no-unexpected-multiline&quot;: 2,             //行尾缺少分号可能导致一些意外情况
+  &quot;no-sparse-arrays&quot;: 2,                    //数组中多出逗号
+  &quot;no-shadow-restricted-names&quot;: 2,          //关键词与命名冲突
+  &quot;no-undef&quot;: 2,                            //变量未定义
+  &quot;no-unused-vars&quot;: 2,                      //变量定义后未使用
+  &quot;no-cond-assign&quot;: 2,                      //条件语句中禁止赋值操作
+  &quot;no-native-reassign&quot;: 2,                  //禁止覆盖原生对象
+
+  //代码风格优化
+  &quot;no-else-return&quot;: 1,                      //在else代码块中return，else是多余的
+  &quot;no-multi-spaces&quot;: 1,                     //不允许多个空格
+  &quot;key-spacing&quot;: [1, {&quot;beforeColon&quot;: false, &quot;afterColon&quot;: true}],//object直接量建议写法 : 后一个空格前面不留空格
+  &quot;block-scoped-var&quot;: 2,                    //变量应在外部上下文中声明，不应在{}代码块中
+  &quot;consistent-return&quot;: 2,                   //函数返回值可能是不同类型
+  &quot;accessor-pairs&quot;: 2,                      //object getter/setter方法需要成对出现
+  &quot;dot-location&quot;: [2, &quot;property&quot;],          //换行调用对象方法  点操作符应写在行首
+  &quot;no-lone-blocks&quot;: 2,                      //多余的{}嵌套
+  &quot;no-empty-label&quot;: 2,                      //无用的标记
+  &quot;no-extend-native&quot;: 2,                    //禁止扩展原生对象
+  &quot;no-floating-decimal&quot;: 2,                 //浮点型需要写全 禁止.1 或 2.写法
+  &quot;no-loop-func&quot;: 2,                        //禁止在循环体中定义函数
+  &quot;no-new-func&quot;: 2,                         //禁止new Function(...) 写法
+  &quot;no-self-compare&quot;: 2,                     //不允与自己比较作为条件
+  &quot;no-sequences&quot;: 2,                        //禁止可能导致结果不明确的逗号操作符
+  &quot;no-throw-literal&quot;: 2,                    //禁止抛出一个直接量 应是Error对象
+  &quot;no-return-assign&quot;: [2, &quot;always&quot;],        //不允return时有赋值操作
+  &quot;no-redeclare&quot;: [2, {&quot;builtinGlobals&quot;: true}],//不允许重复声明
+  &quot;no-unused-expressions&quot;: [2, {&quot;allowShortCircuit&quot;: true, &quot;allowTernary&quot;: true}],//不执行的表达式
+  &quot;no-useless-call&quot;: 2,                     //无意义的函数call或apply
+  &quot;no-useless-concat&quot;: 2,                   //无意义的string concat
+  &quot;no-void&quot;: 2,                             //禁用void
+  &quot;no-with&quot;: 2,                             //禁用with
+  &quot;space-infix-ops&quot;: 2,                     //操作符前后空格
+  &quot;valid-jsdoc&quot;: [2, {&quot;requireParamDescription&quot;: true, &quot;requireReturnDescription&quot;: true}],//jsdoc
+  &quot;no-warning-comments&quot;: [2, { &quot;terms&quot;: [&quot;todo&quot;, &quot;fixme&quot;, &quot;any other term&quot;], &quot;location&quot;: &quot;anywhere&quot; }],//标记未写注释
+  &quot;curly&quot;: 1                                //if、else、while、for代码块用{}包围
+}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;h6 id=&quot;7成功后界面预览&quot;&gt;7.成功后界面预览&lt;/h6&gt;
+    &lt;p&gt;根据语法规则的配置，eslint会自动检测语法错误，并高亮显示，是不是很酷呢~
+&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/4190280-e4da058dd1b91da6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;Paste_Image.png&quot; /&gt;&lt;/p&gt;
+    &lt;h1 id=&quot;gulp中如何集成eslint&quot;&gt;gulp中如何集成ESlint&lt;/h1&gt;
+    &lt;p&gt;通过自动化构建工具gulpe来集成eslint也是非常方便的。&lt;/p&gt;
+    &lt;h6 id=&quot;1安装gulp-eslint包模块&quot;&gt;1.安装gulp-eslint包模块&lt;/h6&gt;
+    &lt;p&gt;通过npm 或者 cnpm( 淘宝）来全局安装gulp-eslint 包模块.&lt;/p&gt;
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;npm install gulp-eslint -g
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;h6 id=&quot;2编写gulp配置文件&quot;&gt;2.编写gulp配置文件&lt;/h6&gt;
+    &lt;p&gt;然后在自己的项目的gulp.js配置文件中编写eslint的任务即可。&lt;/p&gt;
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var eslint = require('gulp-eslint');
+gulp.task('eslint-task', function(){
+    return gulp.src(['app/**/*.js']) //指定的校验路径
+    .pipe(eslint({configFile:&quot;./.eslintrc&quot;})) //使用你的eslint校验文件
+    .pipe(eslint.format())
+ });
+gulp.task('default', ['eslint-task']);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;h1 id=&quot;总结&quot;&gt;总结&lt;/h1&gt;
+    &lt;p&gt;使用eslint能够很大程度上避免程序员编码过程中出现的低级错误，提高自己的代码水平。一个项目中，代码的质量，健壮性尤为重要。eslint能够让前端工程工程化更进一步。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Wed, 08 May 2019 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2019/05/08/ESLint%E8%AF%AD%E6%B3%95%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/05/08/ESLint%E8%AF%AD%E6%B3%95%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/</guid>
+        
+        <category>ESLint简介</category>
+        
+        <category>ESlint特点</category>
+        
+        <category>sublime中如何安装ESLint</category>
+        
+        <category>gulp中如何集成ESlint</category>
+        
+        <category>总结</category>
+        
+        
+      </item>
+    
+  </channel>
+</rss>
