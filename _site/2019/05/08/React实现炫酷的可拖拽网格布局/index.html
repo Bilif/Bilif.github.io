@@ -10,7 +10,7 @@
     <meta name="keywords"  content="BY, BY Blog, Bilif的博客, 乔智, Bilif, Web, React, iPhone">
     <meta name="theme-color" content="#000000">
     
-    <title>ESLint语法检测工具 - Bilif Blog</title>
+    <title>React实现炫酷的可拖拽网格布局 - Bilif Blog</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -22,7 +22,7 @@
     <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/2019/05/08/ESLint%E8%AF%AD%E6%B3%95%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/">
+    <link rel="canonical" href="http://localhost:4000/2019/05/08/React%E5%AE%9E%E7%8E%B0%E7%82%AB%E9%85%B7%E7%9A%84%E5%8F%AF%E6%8B%96%E6%8B%BD%E7%BD%91%E6%A0%BC%E5%B8%83%E5%B1%80/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -154,13 +154,13 @@
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/img/post-bg-ios9-web.jpg" width="0" height="0"> -->
+<!-- <img src="/img/post-bg-ios10.jpg" width="0" height="0"> -->
 
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
         position: relative;
-        background-image: url('/img/post-bg-ios9-web.jpg')
+        background-image: url('/img/post-bg-ios10.jpg')
     }
 
     
@@ -173,21 +173,19 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#ESLint简介" title="ESLint简介">ESLint简介</a>
+                        <a class="tag" href="/tags/#前言" title="前言">前言</a>
                         
-                        <a class="tag" href="/tags/#ESlint特点" title="ESlint特点">ESlint特点</a>
+                        <a class="tag" href="/tags/#项目预览" title="项目预览">项目预览</a>
                         
-                        <a class="tag" href="/tags/#sublime中如何安装ESLint" title="sublime中如何安装ESLint">sublime中如何安装ESLint</a>
+                        <a class="tag" href="/tags/#项目实战" title="项目实战">项目实战</a>
                         
-                        <a class="tag" href="/tags/#gulp中如何集成ESlint" title="gulp中如何集成ESlint">gulp中如何集成ESlint</a>
-                        
-                        <a class="tag" href="/tags/#总结" title="总结">总结</a>
+                        <a class="tag" href="/tags/#后记" title="后记">后记</a>
                         
                     </div>
-                    <h1>ESLint语法检测工具</h1>
+                    <h1>React实现炫酷的可拖拽网格布局</h1>
                     
                     
-                    <h2 class="subheading">教你如何使用ESLint</h2>
+                    <h2 class="subheading">可拖拽自定义面板</h2>
                     
                     <span class="meta">Posted by Bilif on May 8, 2019</span>
                 </div>
@@ -207,160 +205,150 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-				<h1 id="eslint简介">ESLint简介</h1>
-<p>ESLint是一款代码规格检查工具，能够有效的保证团队的代码质量,避免低级代码。</p>
+				<h1 id="前言">前言</h1>
+<p>最近老板让做一个自定义面板，能够在面板上自由的拖拽，新增，删除组件。组件可以是各种echarts图形，通过各个组件的拖拽组合，从而让用户自定义想要看到的面板。需求就是这样，那么撸起袖子开始干！😂</p>
 
-<h1 id="eslint特点">ESlint特点</h1>
-<ul>
-  <li>默认规则包含所有JSHint、JSLint中存在的所有规则，易迁移；</li>
-  <li>可以设置警告（1），错误（2），关闭（0）三种规格的配置；</li>
-  <li>包含代码风格检测；</li>
-  <li>支持插件扩展、自定义规则；</li>
-</ul>
+<h1 id="项目预览">项目预览</h1>
+<p><a href="https://bilif.github.io/react-drag-grid/">demo地址</a></p>
 
-<h1 id="sublime中如何安装eslint">sublime中如何安装ESLint</h1>
-<h6 id="1环境准备">1.环境准备</h6>
-<ul>
-  <li>首先你得有sublime text3编辑器，并且已经安装了package control；</li>
-  <li>其次你得有node环境，如果不知道node环境如何安装，请点击前往 <a href="http://blog.csdn.net/zhyh1986/article/details/39249655">node</a>；</li>
-  <li>好了，以上环境准备好了就可以按照下面步骤一步步来了。</li>
-</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2019/5/14/16ab4e3123933a26?w=599&amp;h=321&amp;f=gif&amp;s=310674" alt="QQ20190514-131658-HD-compress.gif" /></p>
 
-<h6 id="2安装eslint包模块">2.安装eslint包模块</h6>
-<p>可以使用npm或cnpm（淘宝）来全局安装eslint。</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm install eslint -g
+<p>组件可以动态添加，删除，可以自由拖拽，缩放。并且缩放后组件内部的echarts图表也会跟着缩放。</p>
+
+<h1 id="项目实战">项目实战</h1>
+
+<h5 id="技术架构">技术架构</h5>
+
+<ol>
+  <li>前端框架：<a href="https://react.docschina.org/">React</a></li>
+  <li>UI库：<a href="https://ant.design/index-cn">Ant Design</a></li>
+  <li>脚手架：<a href="https://github.com/facebook/create-react-app">create-react-app</a></li>
+  <li>拖拽插件：<a href="https://github.com/STRML/react-grid-layout">react-grid-layout</a></li>
+</ol>
+
+<h5 id="技术实现">技术实现</h5>
+<p>1.使用npm安装react-grid-layout包</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm install react-grid-layout
 </code></pre></div></div>
-<h6 id="3安装sublimelinter插件">3.安装sublimeLinter插件</h6>
-<p>在sublime中打开package control（快捷键ctrl + shift + p）选择install package 然后在搜索框中搜索sublimeLinter插件，点击即可安装。
-<img src="http://upload-images.jianshu.io/upload_images/4190280-8f7e583f8a9c2182.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png" /></p>
-<h6 id="4安装sublimelinter-contrib-eslint插件">4.安装sublimeLinter-contrib-eslint插件</h6>
-<p>同样的在package control中搜索sublimeLinter-contrib-eslint插件来进行安装</p>
 
-<p><img src="http://upload-images.jianshu.io/upload_images/4190280-8cdff41f8c548a83.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png" /></p>
-<h6 id="5集成sublimelinter的配置文件">5.集成sublimeLinter的配置文件</h6>
-<p>点击preferences ==&gt; package settings ==&gt; SublimeLinter ==&gt; Settings-user 打开配置文件，查询paths关键字，找到paths下面的<em>windows</em>字段，修改eslint的全局命令：</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"paths": {
-            "linux": [],
-            "osx": [],
-            "windows": [
-                "**/nodejs/eslint.cmd"
-            ]
-        },
+<p>2.在js文件中引入WidthProvider和Responsive组件，并且实例化响应式拖拽组件。在css文件中引入插件的样式。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import { WidthProvider, Responsive } from "react-grid-layout";
+const ResponsiveReactGridLayout = WidthProvider(Responsive);
+@import '~react-grid-layout/css/styles.css';
+@import '~react-resizable/css/styles.css';
 </code></pre></div></div>
-<h6 id="6创建eslintrc语法规则文件">6.创建.eslintrc语法规则文件</h6>
-<p>当当当，终于到了最后一步拉。在自己的项目工程根目录下面创建.eslintrc语法规则配置文件。</p>
-<ul>
-  <li>方法一: 在命令行里输入<code class="highlighter-rouge">eslint --init</code>命令进行自主选择创建文件。命令行会根据用户自己选择的风格来创建文件
-<img src="http://upload-images.jianshu.io/upload_images/4190280-5bdb8bb2b64b83b5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png" /></li>
-  <li>方法二: 在命令行里输入’echo {} &gt; .eslintrc’命令直接创建.eslintrc文件。然后在.eslintrc文件中可以直接复制以下代码,具体的rule配置可以根据自己的项目选择性的修改：
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
-"globals": {
-  "$": true,                                //zepto
-  "define": true,                           //requirejs
-  "require": true                           //requirejs
-},
-"env": {
-  "browser": true                           //执行环境 浏览器
-},
-"rules": {
-  //官方文档 http://eslint.org/docs/rules/
-  //警告
-  // "quotes": [0, "single"],                  //建议使用单引号
-  // "no-inner-declarations": [0, "both"],     //不建议在{}代码块内部声明变量或函数
-  "no-extra-boolean-cast": 1,               //多余的感叹号转布尔型
-  "no-extra-semi": 1,                       //多余的分号
-  "no-extra-parens": 1,                     //多余的括号
-  "no-empty": 1,                            //空代码块
-  "no-use-before-define": [1, "nofunc"],    //使用前未定义
-  "complexity": [1, 10],                    //圈复杂度大于10 警告
 
-  //常见错误
-  "comma-dangle": [2, "never"],             //定义数组或对象最后多余的逗号
-  "no-debugger": 2,                         //debugger 调试代码未删除
-  "no-constant-condition": 2,               //常量作为条件
-  "no-dupe-args": 2,                        //参数重复
-  "no-dupe-keys": 2,                        //对象属性重复
-  "no-duplicate-case": 2,                   //case重复
-  "no-empty-character-class": 2,            //正则无法匹配任何值
-  "no-invalid-regexp": 2,                   //无效的正则
-  "no-func-assign": 2,                      //函数被赋值
-  "valid-typeof": 2,                        //无效的类型判断
-  "no-unreachable": 2,                      //不可能执行到的代码
-  "no-unexpected-multiline": 2,             //行尾缺少分号可能导致一些意外情况
-  "no-sparse-arrays": 2,                    //数组中多出逗号
-  "no-shadow-restricted-names": 2,          //关键词与命名冲突
-  "no-undef": 2,                            //变量未定义
-  "no-unused-vars": 2,                      //变量定义后未使用
-  "no-cond-assign": 2,                      //条件语句中禁止赋值操作
-  "no-native-reassign": 2,                  //禁止覆盖原生对象
+<p>3.在React的render方法中渲染可拖拽布局。ResponsiveReactGridLayout组件有多个属性，这里举几个比较重要的说明一下：</p>
 
-  //代码风格优化
-  "no-else-return": 1,                      //在else代码块中return，else是多余的
-  "no-multi-spaces": 1,                     //不允许多个空格
-  "key-spacing": [1, {"beforeColon": false, "afterColon": true}],//object直接量建议写法 : 后一个空格前面不留空格
-  "block-scoped-var": 2,                    //变量应在外部上下文中声明，不应在{}代码块中
-  "consistent-return": 2,                   //函数返回值可能是不同类型
-  "accessor-pairs": 2,                      //object getter/setter方法需要成对出现
-  "dot-location": [2, "property"],          //换行调用对象方法  点操作符应写在行首
-  "no-lone-blocks": 2,                      //多余的{}嵌套
-  "no-empty-label": 2,                      //无用的标记
-  "no-extend-native": 2,                    //禁止扩展原生对象
-  "no-floating-decimal": 2,                 //浮点型需要写全 禁止.1 或 2.写法
-  "no-loop-func": 2,                        //禁止在循环体中定义函数
-  "no-new-func": 2,                         //禁止new Function(...) 写法
-  "no-self-compare": 2,                     //不允与自己比较作为条件
-  "no-sequences": 2,                        //禁止可能导致结果不明确的逗号操作符
-  "no-throw-literal": 2,                    //禁止抛出一个直接量 应是Error对象
-  "no-return-assign": [2, "always"],        //不允return时有赋值操作
-  "no-redeclare": [2, {"builtinGlobals": true}],//不允许重复声明
-  "no-unused-expressions": [2, {"allowShortCircuit": true, "allowTernary": true}],//不执行的表达式
-  "no-useless-call": 2,                     //无意义的函数call或apply
-  "no-useless-concat": 2,                   //无意义的string concat
-  "no-void": 2,                             //禁用void
-  "no-with": 2,                             //禁用with
-  "space-infix-ops": 2,                     //操作符前后空格
-  "valid-jsdoc": [2, {"requireParamDescription": true, "requireReturnDescription": true}],//jsdoc
-  "no-warning-comments": [2, { "terms": ["todo", "fixme", "any other term"], "location": "anywhere" }],//标记未写注释
-  "curly": 1                                //if、else、while、for代码块用{}包围
-}
-}
-</code></pre></div>    </div>
-    <h6 id="7成功后界面预览">7.成功后界面预览</h6>
-    <p>根据语法规则的配置，eslint会自动检测语法错误，并高亮显示，是不是很酷呢~
-<img src="http://upload-images.jianshu.io/upload_images/4190280-e4da058dd1b91da6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png" /></p>
-    <h1 id="gulp中如何集成eslint">gulp中如何集成ESlint</h1>
-    <p>通过自动化构建工具gulpe来集成eslint也是非常方便的。</p>
-    <h6 id="1安装gulp-eslint包模块">1.安装gulp-eslint包模块</h6>
-    <p>通过npm 或者 cnpm( 淘宝）来全局安装gulp-eslint 包模块.</p>
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm install gulp-eslint -g
-</code></pre></div>    </div>
-    <h6 id="2编写gulp配置文件">2.编写gulp配置文件</h6>
-    <p>然后在自己的项目的gulp.js配置文件中编写eslint的任务即可。</p>
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var eslint = require('gulp-eslint');
-gulp.task('eslint-task', function(){
-    return gulp.src(['app/**/*.js']) //指定的校验路径
-    .pipe(eslint({configFile:"./.eslintrc"})) //使用你的eslint校验文件
-    .pipe(eslint.format())
- });
-gulp.task('default', ['eslint-task']);
-</code></pre></div>    </div>
-    <h1 id="总结">总结</h1>
-    <p>使用eslint能够很大程度上避免程序员编码过程中出现的低级错误，提高自己的代码水平。一个项目中，代码的质量，健壮性尤为重要。eslint能够让前端工程工程化更进一步。</p>
-  </li>
-</ul>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- cols：定义了响应式布局划分成几列。
+- rowHeight：响应式布局中组件的行高。
+- onLayoutChange：当响应式布局中的组件发生拖拽或者放大缩小时触发该函数。
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;ResponsiveReactGridLayout
+    className="layout"
+    {...this.props}
+    layouts={this.state.layouts}
+    onLayoutChange={(layout, layouts) =&gt;
+              this.onLayoutChange(layout, layouts)
+            }
+   &gt;
+     {this.generateDOM()}
+&lt;/ResponsiveReactGridLayout&gt;
+</code></pre></div></div>
+
+<p>4.通过generateDOM函数生成布局中的组件,首先先遍历组件数组，通过每个组件的类型判断生产柱状图组件，折线组件，还是饼图组件。每个组件必须定义一个全局唯一的key值。data-grid为每一个组件绑定了其属性。下面会介绍具体的data-grid属性。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> generateDOM = () =&gt; {
+    return _.map(this.state.widgets, (l, i) =&gt; {
+      let option;
+      if (l.type === 'bar') {
+        option = getBarChart();
+      }else if (l.type === 'line') {
+        option = getLineChart();
+      }else if (l.type === 'pie') {
+        option = getPieChart();
+      }
+      let component = (
+        &lt;ReactEcharts
+          option={option}
+          notMerge={true}
+          lazyUpdate={true}
+          style=
+        /&gt;
+      )
+      return (
+        &lt;div key={l.i} data-grid={l}&gt;
+          &lt;span className='remove' onClick={this.onRemoveItem.bind(this, i)}&gt;x&lt;/span&gt;
+          {component}
+        &lt;/div&gt;
+      );
+    });
+  };
+</code></pre></div></div>
+
+<p>5.通过addItem函数来新增组件。每个组件属性如下：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- x: 组件在x轴坐标
+- y: 组件在y轴坐标
+- w: 组件宽度
+- h: 组件高度
+- i:  组件key值
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>addItem(type,widgetId) {
+    const addItem = {
+      x: (this.state.widgets.length * 2) % (this.state.cols || 12),
+      y: Infinity, // puts it at the bottom
+      w: 2,
+      h: 2,
+      i: widgetId || new Date().getTime().toString(),
+    };
+    this.setState(
+      {
+        widgets: this.state.widgets.concat({
+          ...addItem,
+          type,
+        }),
+      },
+    );
+  };
+</code></pre></div></div>
+
+<p>6.通过onRemoveItem函数来移除增组件。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>onRemoveItem(i) {
+    console.log(this.state.widgets)
+    this.setState({
+      widgets: this.state.widgets.filter((item,index) =&gt; index !=i)
+    });
+
+  }
+</code></pre></div></div>
+
+<h1 id="后记">后记</h1>
+
+<p><strong>感谢支持。若不足之处，欢迎大家指出，共勉。</strong></p>
+
+<p><strong>如果觉得不错，记得 点赞，谢谢大家</strong> 😂</p>
+
+<p><a href="https://github.com/Bilif/react-drag-grid">源码地址</a></p>
+
+<blockquote>
+  <p>欢迎关注 我的：<a href="https://bilif.github.io/">【Blog】</a><a href="https://github.com/Bilif">【Github】</a><a href="https://juejin.im/user/58b5198cac502e00589a6388">【掘金】</a><a href="https://www.jianshu.com/u/94a557704b3e">【简书】</a></p>
+</blockquote>
+
 
 
                 <hr style="visibility: hidden;">
 
                 <ul class="pager">
                     
-                    
-                    <li class="next">
-                        <a href="/2019/05/08/React%E5%AE%9E%E7%8E%B0%E7%82%AB%E9%85%B7%E7%9A%84%E5%8F%AF%E6%8B%96%E6%8B%BD%E7%BD%91%E6%A0%BC%E5%B8%83%E5%B1%80/" data-toggle="tooltip" data-placement="top" title="React实现炫酷的可拖拽网格布局">
-                        Next<br>
-                        <span>React实现炫酷的可拖拽网格布局</span>
+                    <li class="previous">
+                        <a href="/2019/05/08/ESLint%E8%AF%AD%E6%B3%95%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/" data-toggle="tooltip" data-placement="top" title="ESLint语法检测工具">
+                        Previous<br>
+                        <span>ESLint语法检测工具</span>
                         </a>
                     </li>
+                    
                     
                 </ul>
 
