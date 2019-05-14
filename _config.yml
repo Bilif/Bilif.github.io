@@ -64,6 +64,9 @@ gitalk:
   admin: bilif
   distractionFreeMode: true #是否启用类似FB的阴影遮罩
 
+# Analytics settings
+# Baidu Analytics
+ba_track_id: 9476a6d9d16ee9956fb1b2c611c6e97e
 
 # Featured Tags
 featured-tags: true                     # 是否使用首页标签
