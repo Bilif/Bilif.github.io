@@ -5,8 +5,8 @@
     <description>Every failure is leading towards success.</description>
     <link>https://bilif.github.io//</link>
     <atom:link href="https://bilif.github.io//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 14 May 2019 16:57:26 +0800</pubDate>
-    <lastBuildDate>Tue, 14 May 2019 16:57:26 +0800</lastBuildDate>
+    <pubDate>Tue, 14 May 2019 17:59:14 +0800</pubDate>
+    <lastBuildDate>Tue, 14 May 2019 17:59:14 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -147,13 +147,9 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
         <link>https://bilif.github.io//2019/05/08/React%E5%AE%9E%E7%8E%B0%E7%82%AB%E9%85%B7%E7%9A%84%E5%8F%AF%E6%8B%96%E6%8B%BD%E7%BD%91%E6%A0%BC%E5%B8%83%E5%B1%80/</link>
         <guid isPermaLink="true">https://bilif.github.io//2019/05/08/React%E5%AE%9E%E7%8E%B0%E7%82%AB%E9%85%B7%E7%9A%84%E5%8F%AF%E6%8B%96%E6%8B%BD%E7%BD%91%E6%A0%BC%E5%B8%83%E5%B1%80/</guid>
         
-        <category>前言</category>
+        <category>React</category>
         
-        <category>项目预览</category>
-        
-        <category>项目实战</category>
-        
-        <category>后记</category>
+        <category>组件拖拽</category>
         
         
       </item>
@@ -306,15 +302,9 @@ gulp.task('default', ['eslint-task']);
         <link>https://bilif.github.io//2019/05/08/ESLint%E8%AF%AD%E6%B3%95%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/</link>
         <guid isPermaLink="true">https://bilif.github.io//2019/05/08/ESLint%E8%AF%AD%E6%B3%95%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/</guid>
         
-        <category>ESLint简介</category>
+        <category>ESLint</category>
         
-        <category>ESlint特点</category>
-        
-        <category>sublime中如何安装ESLint</category>
-        
-        <category>gulp中如何集成ESlint</category>
-        
-        <category>总结</category>
+        <category>代码检测</category>
         
         
       </item>
