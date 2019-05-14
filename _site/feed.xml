@@ -5,9 +5,149 @@
     <description>Every failure is leading towards success.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 09 May 2019 09:36:42 +0800</pubDate>
-    <lastBuildDate>Thu, 09 May 2019 09:36:42 +0800</lastBuildDate>
+    <pubDate>Tue, 14 May 2019 14:03:02 +0800</pubDate>
+    <lastBuildDate>Tue, 14 May 2019 14:03:02 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>React实现炫酷的可拖拽网格布局</title>
+        <description>&lt;h1 id=&quot;前言&quot;&gt;前言&lt;/h1&gt;
+&lt;p&gt;最近老板让做一个自定义面板，能够在面板上自由的拖拽，新增，删除组件。组件可以是各种echarts图形，通过各个组件的拖拽组合，从而让用户自定义想要看到的面板。需求就是这样，那么撸起袖子开始干！😂&lt;/p&gt;
+
+&lt;h1 id=&quot;项目预览&quot;&gt;项目预览&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;https://bilif.github.io/react-drag-grid/&quot;&gt;demo地址&lt;/a&gt;
+&lt;img src=&quot;https://user-gold-cdn.xitu.io/2019/5/14/16ab4e3123933a26?w=599&amp;amp;h=321&amp;amp;f=gif&amp;amp;s=310674&quot; alt=&quot;QQ20190514-131658-HD-compress.gif&quot; /&gt;
+组件可以动态添加，删除，可以自由拖拽，缩放。并且缩放后组件内部的echarts图表也会跟着缩放。&lt;/p&gt;
+
+&lt;h1 id=&quot;项目实战&quot;&gt;项目实战&lt;/h1&gt;
+&lt;h5 id=&quot;技术架构&quot;&gt;技术架构&lt;/h5&gt;
+&lt;ol&gt;
+  &lt;li&gt;前端框架：&lt;a href=&quot;https://react.docschina.org/&quot;&gt;React&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;UI库：&lt;a href=&quot;https://ant.design/index-cn&quot;&gt;Ant Design&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;脚手架：&lt;a href=&quot;https://github.com/facebook/create-react-app&quot;&gt;create-react-app&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;拖拽插件：&lt;a href=&quot;https://github.com/STRML/react-grid-layout&quot;&gt;react-grid-layout&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h5 id=&quot;技术实现&quot;&gt;技术实现&lt;/h5&gt;
+&lt;ol&gt;
+  &lt;li&gt;使用npm安装react-grid-layout包
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;npm install react-grid-layout
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;在js文件中引入WidthProvider和Responsive组件，并且实例化响应式拖拽组件。在css文件中引入插件的样式。
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import { WidthProvider, Responsive } from &quot;react-grid-layout&quot;;
+const ResponsiveReactGridLayout = WidthProvider(Responsive);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@import '~react-grid-layout/css/styles.css';
+@import '~react-resizable/css/styles.css';
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;在React的render方法中渲染可拖拽布局。ResponsiveReactGridLayout组件有多个属性，这里举几个比较重要的说明一下：
+    &lt;ul&gt;
+      &lt;li&gt;cols：定义了响应式布局划分成几列。&lt;/li&gt;
+      &lt;li&gt;rowHeight：响应式布局中组件的行高。&lt;/li&gt;
+      &lt;li&gt;onLayoutChange：当响应式布局中的组件发生拖拽或者放大缩小时触发该函数。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;ResponsiveReactGridLayout
+    className=&quot;layout&quot;
+    {...this.props}
+    layouts={this.state.layouts}
+    onLayoutChange={(layout, layouts) =&amp;gt;
+              this.onLayoutChange(layout, layouts)
+            }
+   &amp;gt;
+     {this.generateDOM()}
+&amp;lt;/ResponsiveReactGridLayout&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ol&gt;
+  &lt;li&gt;通过generateDOM函数生成布局中的组件,首先先遍历组件数组，通过每个组件的类型判断生产柱状图组件，折线组件，还是饼图组件。每个组件必须定义一个全局唯一的key值。data-grid为每一个组件绑定了其属性。下面会介绍具体的data-grid属性。
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; generateDOM = () =&amp;gt; {
+ return _.map(this.state.widgets, (l, i) =&amp;gt; {
+   let option;
+   if (l.type === 'bar') {
+     option = getBarChart();
+   }else if (l.type === 'line') {
+     option = getLineChart();
+   }else if (l.type === 'pie') {
+     option = getPieChart();
+   }
+   let component = (
+     &amp;lt;ReactEcharts
+       option={option}
+       notMerge={true}
+       lazyUpdate={true}
+       style=
+     /&amp;gt;
+   )
+   return (
+     &amp;lt;div key={l.i} data-grid={l}&amp;gt;
+       &amp;lt;span className='remove' onClick={this.onRemoveItem.bind(this, i)}&amp;gt;x&amp;lt;/span&amp;gt;
+       {component}
+     &amp;lt;/div&amp;gt;
+   );
+ });
+  };
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;通过addItem函数来新增组件。每个组件属性如下：
+    &lt;ul&gt;
+      &lt;li&gt;x: 组件在x轴坐标&lt;/li&gt;
+      &lt;li&gt;y: 组件在y轴坐标&lt;/li&gt;
+      &lt;li&gt;w: 组件宽度&lt;/li&gt;
+      &lt;li&gt;h: 组件高度&lt;/li&gt;
+      &lt;li&gt;i:  组件key值
+        &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;addItem(type,widgetId) {
+ const addItem = {
+ x: (this.state.widgets.length * 2) % (this.state.cols || 12),
+ y: Infinity, // puts it at the bottom
+ w: 2,
+ h: 2,
+ i: widgetId || new Date().getTime().toString(),
+ };
+ this.setState(
+ {
+   widgets: this.state.widgets.concat({
+     ...addItem,
+     type,
+   }),
+ },
+ );
+};
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;通过onRemoveItem函数来移除增组件。
+```
+onRemoveItem(i) {
+ console.log(this.state.widgets)
+ this.setState({
+   widgets: this.state.widgets.filter((item,index) =&amp;gt; index !=i)
+ });&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;}
+```&lt;/p&gt;
+&lt;h1 id=&quot;后记&quot;&gt;后记&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;感谢支持。若不足之处，欢迎大家指出，共勉。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;如果觉得不错，记得 点赞，谢谢大家&lt;/strong&gt; 😂&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/Bilif/react-drag-grid&quot;&gt;源码地址&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;欢迎关注 我的：&lt;a href=&quot;https://bilif.github.io/&quot;&gt;【Blog】&lt;/a&gt;&lt;a href=&quot;https://github.com/Bilif&quot;&gt;【Github】&lt;/a&gt;&lt;a href=&quot;https://juejin.im/user/58b5198cac502e00589a6388&quot;&gt;【掘金】&lt;/a&gt;&lt;a href=&quot;https://www.jianshu.com/u/94a557704b3e&quot;&gt;【简书】&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+</description>
+        <pubDate>Tue, 14 May 2019 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2019/05/14/React%E5%AE%9E%E7%8E%B0%E7%82%AB%E9%85%B7%E7%9A%84%E5%8F%AF%E6%8B%96%E6%8B%BD%E7%BD%91%E6%A0%BC%E5%B8%83%E5%B1%80/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/05/14/React%E5%AE%9E%E7%8E%B0%E7%82%AB%E9%85%B7%E7%9A%84%E5%8F%AF%E6%8B%96%E6%8B%BD%E7%BD%91%E6%A0%BC%E5%B8%83%E5%B1%80/</guid>
+        
+        
+      </item>
     
       <item>
         <title>ESLint语法检测工具</title>

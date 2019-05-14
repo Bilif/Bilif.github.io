@@ -1,0 +1,130 @@
+<h1 id="前言">前言</h1>
+<p>最近老板让做一个自定义面板，能够在面板上自由的拖拽，新增，删除组件。组件可以是各种echarts图形，通过各个组件的拖拽组合，从而让用户自定义想要看到的面板。需求就是这样，那么撸起袖子开始干！😂</p>
+
+<h1 id="项目预览">项目预览</h1>
+<p><a href="https://bilif.github.io/react-drag-grid/">demo地址</a>
+<img src="https://user-gold-cdn.xitu.io/2019/5/14/16ab4e3123933a26?w=599&amp;h=321&amp;f=gif&amp;s=310674" alt="QQ20190514-131658-HD-compress.gif" />
+组件可以动态添加，删除，可以自由拖拽，缩放。并且缩放后组件内部的echarts图表也会跟着缩放。</p>
+
+<h1 id="项目实战">项目实战</h1>
+<h5 id="技术架构">技术架构</h5>
+<ol>
+  <li>前端框架：<a href="https://react.docschina.org/">React</a></li>
+  <li>UI库：<a href="https://ant.design/index-cn">Ant Design</a></li>
+  <li>脚手架：<a href="https://github.com/facebook/create-react-app">create-react-app</a></li>
+  <li>拖拽插件：<a href="https://github.com/STRML/react-grid-layout">react-grid-layout</a></li>
+</ol>
+
+<h5 id="技术实现">技术实现</h5>
+<ol>
+  <li>使用npm安装react-grid-layout包
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm install react-grid-layout
+</code></pre></div>    </div>
+  </li>
+  <li>在js文件中引入WidthProvider和Responsive组件，并且实例化响应式拖拽组件。在css文件中引入插件的样式。
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import { WidthProvider, Responsive } from "react-grid-layout";
+const ResponsiveReactGridLayout = WidthProvider(Responsive);
+</code></pre></div>    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@import '~react-grid-layout/css/styles.css';
+@import '~react-resizable/css/styles.css';
+</code></pre></div>    </div>
+  </li>
+  <li>在React的render方法中渲染可拖拽布局。ResponsiveReactGridLayout组件有多个属性，这里举几个比较重要的说明一下：
+    <ul>
+      <li>cols：定义了响应式布局划分成几列。</li>
+      <li>rowHeight：响应式布局中组件的行高。</li>
+      <li>onLayoutChange：当响应式布局中的组件发生拖拽或者放大缩小时触发该函数。</li>
+    </ul>
+  </li>
+</ol>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;ResponsiveReactGridLayout
+    className="layout"
+    {...this.props}
+    layouts={this.state.layouts}
+    onLayoutChange={(layout, layouts) =&gt;
+              this.onLayoutChange(layout, layouts)
+            }
+   &gt;
+     {this.generateDOM()}
+&lt;/ResponsiveReactGridLayout&gt;
+</code></pre></div></div>
+<ol>
+  <li>通过generateDOM函数生成布局中的组件,首先先遍历组件数组，通过每个组件的类型判断生产柱状图组件，折线组件，还是饼图组件。每个组件必须定义一个全局唯一的key值。data-grid为每一个组件绑定了其属性。下面会介绍具体的data-grid属性。
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> generateDOM = () =&gt; {
+ return _.map(this.state.widgets, (l, i) =&gt; {
+   let option;
+   if (l.type === 'bar') {
+     option = getBarChart();
+   }else if (l.type === 'line') {
+     option = getLineChart();
+   }else if (l.type === 'pie') {
+     option = getPieChart();
+   }
+   let component = (
+     &lt;ReactEcharts
+       option={option}
+       notMerge={true}
+       lazyUpdate={true}
+       style=
+     /&gt;
+   )
+   return (
+     &lt;div key={l.i} data-grid={l}&gt;
+       &lt;span className='remove' onClick={this.onRemoveItem.bind(this, i)}&gt;x&lt;/span&gt;
+       {component}
+     &lt;/div&gt;
+   );
+ });
+  };
+</code></pre></div>    </div>
+  </li>
+  <li>通过addItem函数来新增组件。每个组件属性如下：
+    <ul>
+      <li>x: 组件在x轴坐标</li>
+      <li>y: 组件在y轴坐标</li>
+      <li>w: 组件宽度</li>
+      <li>h: 组件高度</li>
+      <li>i:  组件key值
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>addItem(type,widgetId) {
+ const addItem = {
+ x: (this.state.widgets.length * 2) % (this.state.cols || 12),
+ y: Infinity, // puts it at the bottom
+ w: 2,
+ h: 2,
+ i: widgetId || new Date().getTime().toString(),
+ };
+ this.setState(
+ {
+   widgets: this.state.widgets.concat({
+     ...addItem,
+     type,
+   }),
+ },
+ );
+};
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>通过onRemoveItem函数来移除增组件。
+```
+onRemoveItem(i) {
+ console.log(this.state.widgets)
+ this.setState({
+   widgets: this.state.widgets.filter((item,index) =&gt; index !=i)
+ });</li>
+</ol>
+
+<p>}
+```</p>
+<h1 id="后记">后记</h1>
+<p><strong>感谢支持。若不足之处，欢迎大家指出，共勉。</strong></p>
+
+<p><strong>如果觉得不错，记得 点赞，谢谢大家</strong> 😂</p>
+
+<p><a href="https://github.com/Bilif/react-drag-grid">源码地址</a></p>
+<blockquote>
+  <p>欢迎关注 我的：<a href="https://bilif.github.io/">【Blog】</a><a href="https://github.com/Bilif">【Github】</a><a href="https://juejin.im/user/58b5198cac502e00589a6388">【掘金】</a><a href="https://www.jianshu.com/u/94a557704b3e">【简书】</a></p>
+</blockquote>
+
