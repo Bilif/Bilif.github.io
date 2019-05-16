@@ -11,16 +11,16 @@
     <meta name="theme-color" content="#000000">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="Bilif Blog">
+    <meta property="og:title" content="Archive - Bilif Blog">
     
     <meta property="og:type" content="website">
-    <meta property="og:description" content="Thinking will not overcome fear but action will.">
+    <meta property="og:description" content="keep hungry keep foolish">
     
     <meta property="og:image" content="https://bilif.github.io//img/about-avatar.jpg">
-    <meta property="og:url" content="https://bilif.github.io//">
+    <meta property="og:url" content="https://bilif.github.io//archive/">
     <meta property="og:site_name" content="Bilif Blog">
 
-    <title>Bilif Blog</title>
+    <title>Archive - Bilif Blog</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -32,7 +32,7 @@
     <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://bilif.github.io//">
+    <link rel="canonical" href="https://bilif.github.io//archive/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -166,7 +166,11 @@
 </script>
 
 
-    <!-- Page Header -->
+    <!-- 
+Credits: this page shamelessly borrowed a lot from:
+https://github.com/kitian616/jekyll-TeXt-theme
+-->
+<!-- Page Header -->
 
 
 
@@ -174,15 +178,15 @@
 
 
 
-<header class="intro-header" style="background-image: url('/img/post-bg-desk.jpg')">
+<header class="intro-header" style="background-image: url('/img/tag-bg.jpg')">
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
-        <div class="site-heading">
+        <div class="site-heading" id="tag-heading">
         
-          <h1>Bilif Blog</h1>
-          <span class="subheading">Thinking will not overcome fear but action will.</span>
+          <h1>Archive</h1>
+          <span class="subheading">keep hungry keep foolish</span>
         </div>
       </div>
     </div>
@@ -193,181 +197,84 @@
 <!-- Main Content -->
 <div class="container">
 	<div class="row">
+		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+			<!-- Tags (as filter) -->
+			<div id='tag_cloud' class="tags tags-sup js-tags">
+				<a class="tag-button--all" data-encode="">
+					Show All
+					<sup>2</sup>
+				</a>
+
+				
         
+				
+				</a>
+				
+				<a data-sort="0001"
+					data-encode="%E4%BB%A3%E7%A0%81%E6%A3%80%E6%B5%8B"
+					class="tag-button"
+					title="代码检测" rel="1">
+					代码检测
+					<sup>1</sup>
+				</a>
+				
+				<a data-sort="0001"
+					data-encode="%E7%BB%84%E4%BB%B6%E6%8B%96%E6%8B%BD"
+					class="tag-button"
+					title="组件拖拽" rel="1">
+					组件拖拽
+					<sup>1</sup>
+				</a>
+				
+				<a data-sort="0001"
+					data-encode="ESLint"
+					class="tag-button"
+					title="ESLint" rel="1">
+					ESLint
+					<sup>1</sup>
+				</a>
+				
+				<a data-sort="0001"
+					data-encode="React"
+					class="tag-button"
+					title="React" rel="1">
+					React
+					<sup>1</sup>
+				
+			</div>
 
-<!-- USE SIDEBAR -->
-    <!-- PostList Container -->
-    		<div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                postlist-container
-            ">
-    			
-<div class="post-preview">
-    <a href="/2019/05/14/React%E5%AE%9E%E7%8E%B0%E7%82%AB%E9%85%B7%E7%9A%84%E5%8F%AF%E6%8B%96%E6%8B%BD%E7%BD%91%E6%A0%BC%E5%B8%83%E5%B1%80/">
-        <h2 class="post-title">
-            React实现炫酷的可拖拽网格布局
-        </h2>
-        
-        <h3 class="post-subtitle">
-            可拖拽自定义面板
-        </h3>
-        
-        <div class="post-content-preview">
-            前言
-最近老板让做一个自定义面板，能够在面板上自由的拖拽，新增，删除组件。组件可以是各种echarts图形，通过各个组件的拖拽组合，从而让用户自定义想要看到的面板。需求就是这样，那么撸起袖子开始干！😂
-
-项目预览
-demo地址
-
-
-
-组件可以动态添加，删除，可以自由拖拽，缩放。并且缩放后组件内部的echarts图表也会跟着缩放。
-
-项目实战
-
-技术架构
-
-
-  前端框架：React
-  UI...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Bilif on May 14, 2019
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2019/05/08/ESLint%E8%AF%AD%E6%B3%95%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/">
-        <h2 class="post-title">
-            ESLint语法检测工具
-        </h2>
-        
-        <h3 class="post-subtitle">
-            教你如何使用ESLint
-        </h3>
-        
-        <div class="post-content-preview">
-            ESLint简介
-ESLint是一款代码规格检查工具，能够有效的保证团队的代码质量,避免低级代码。
-
-ESlint特点
-
-  默认规则包含所有JSHint、JSLint中存在的所有规则，易迁移；
-  可以设置警告（1），错误（2），关闭（0）三种规格的配置；
-  包含代码风格检测；
-  支持插件扩展、自定义规则；
-
-
-sublime中如何安装ESLint
-1.环境准备
-
-  首先你得有sub...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Bilif on May 8, 2019
-    </p>
-</div>
-<hr>
-
-
-<!-- Pager -->
-
-
-    		</div>
-    <!-- Sidebar Container -->
-            <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
-                <!-- Featured Tags -->
-                
-
-
-<section>
-    
-    <h5><a href="/archive/">FEATURED TAGS</a></h5>
-    <div class="tags">
-        
-        
-        
-        
-        
-    </div>
-</section>
-
-
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-  <hr>
-  <h5><a href="/about/">ABOUT ME</a></h5>
-  <div class="short-about">
-    
-    <img src="/img/about-avatar.jpg" />
-    
-    
-    <p>Goals determine what you going to be!</p>
-    
-    <!-- SNS Link -->
-    
-
-
-<ul class="list-inline">
-
-
-  
-  
-
-  
-  
-  
-  
-  <li>
-    <a target="_blank" href="https://juejin.im/user/58b5198cac502e00589a6388">
-      <span class="fa-stack fa-lg">
-        <i class="fa fa-circle fa-stack-2x"></i>
-        <i class="fa  fa-stack-1x fa-inverse">掘</i>
-      </span>
-    </a>
-  </li>
-  
-  
-  <li>
-    <a target="_blank" href="https://www.jianshu.com/u/94a557704b3e">
-      <span class="fa-stack fa-lg">
-        <i class="fa fa-circle fa-stack-2x"></i>
-        <i class="fa  fa-stack-1x fa-inverse">简</i>
-      </span>
-    </a>
-  </li>
-  
-  
-  <li>
-    <a target="_blank" href="https://github.com/Bilif">
-      <span class="fa-stack fa-lg">
-        <i class="fa fa-circle fa-stack-2x"></i>
-        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-      </span>
-    </a>
-  </li>
-  
-  
-</ul>
-  </div>
-</section>
-
-                <!-- Friends Blog -->
-                
-    		</div>
-        
+            <!-- Article List -->
+			<div class="mini-post-list js-result d-none"><section>
+				<span class="fa listing-seperator">
+					<span class="tag-text">2019</span>
+				</span><div class="post-preview item" data-tags="React,%E7%BB%84%E4%BB%B6%E6%8B%96%E6%8B%BD">
+				    <a href="/2019/05/14/React%E5%AE%9E%E7%8E%B0%E7%82%AB%E9%85%B7%E7%9A%84%E5%8F%AF%E6%8B%96%E6%8B%BD%E7%BD%91%E6%A0%BC%E5%B8%83%E5%B1%80/">
+				        <h2 class="post-title">
+                            React实现炫酷的可拖拽网格布局
+				        </h2>
+				        
+				        <h3 class="post-subtitle">
+				            可拖拽自定义面板
+				        </h3>
+				        
+				    </a>
+					<hr>
+				</div>
+			<div class="post-preview item" data-tags="ESLint,%E4%BB%A3%E7%A0%81%E6%A3%80%E6%B5%8B">
+				    <a href="/2019/05/08/ESLint%E8%AF%AD%E6%B3%95%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/">
+				        <h2 class="post-title">
+                            ESLint语法检测工具
+				        </h2>
+				        
+				        <h3 class="post-subtitle">
+				            教你如何使用ESLint
+				        </h3>
+				        
+				    </a>
+					<hr>
+				</div>
+			
+		</div>
 	</div>
 </div>
 
@@ -487,6 +394,18 @@ sublime中如何安装ESLint
 
 
 
+
+<!-- jquery.tagcloud.js -->
+<script>
+    async('/js/jquery.tagcloud.js',function(){
+        $.fn.tagcloud.defaults = {
+            //size: {start: 1, end: 1, unit: 'em'},
+            color: {start: '#bbbbee', end: '#2f93b4'},
+        };
+        $('#tag_cloud a').tagcloud();
+    })
+</script>
+<script src='/js/archive.js '></script>
 
 
 <!--fastClick.js -->
