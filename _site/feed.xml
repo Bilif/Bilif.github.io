@@ -3,10 +3,10 @@
   <channel>
     <title>Bilif Blog</title>
     <description>Every failure is leading towards success.</description>
-    <link>https://bilif.github.io//</link>
-    <atom:link href="https://bilif.github.io//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 15 May 2019 08:42:44 +0800</pubDate>
-    <lastBuildDate>Wed, 15 May 2019 08:42:44 +0800</lastBuildDate>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Thu, 16 May 2019 13:29:12 +0800</pubDate>
+    <lastBuildDate>Thu, 16 May 2019 13:29:12 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -34,24 +34,39 @@
 
 &lt;h5 id=&quot;技术实现&quot;&gt;技术实现&lt;/h5&gt;
 &lt;p&gt;1.使用npm安装react-grid-layout包&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;npm install react-grid-layout
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nx&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;react&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;grid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;layout&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;2.在js文件中引入WidthProvider和Responsive组件，并且实例化响应式拖拽组件。在css文件中引入插件的样式。&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import { WidthProvider, Responsive } from &quot;react-grid-layout&quot;;
-const ResponsiveReactGridLayout = WidthProvider(Responsive);
-@import '~react-grid-layout/css/styles.css';
-@import '~react-resizable/css/styles.css';
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;WidthProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Responsive&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;react-grid-layout&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ResponsiveReactGridLayout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;WidthProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Responsive&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'~react-grid-layout/css/styles.css'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'~react-resizable/css/styles.css'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;3.在React的render方法中渲染可拖拽布局。ResponsiveReactGridLayout组件有多个属性，这里举几个比较重要的说明一下：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;cols：定义了响应式布局划分成几列。&lt;/li&gt;
+  &lt;li&gt;rowHeight：响应式布局中组件的行高。&lt;/li&gt;
+  &lt;li&gt;onLayoutChange：当响应式布局中的组件发生拖拽或者放大缩小时触发该函数。&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;- cols：定义了响应式布局划分成几列。
-- rowHeight：响应式布局中组件的行高。
-- onLayoutChange：当响应式布局中的组件发生拖拽或者放大缩小时触发该函数。
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;ResponsiveReactGridLayout
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&amp;lt;ResponsiveReactGridLayout
     className=&quot;layout&quot;
     {...this.props}
     layouts={this.state.layouts}
@@ -61,10 +76,36 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
    &amp;gt;
      {this.generateDOM()}
 &amp;lt;/ResponsiveReactGridLayout&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;4.通过generateDOM函数生成布局中的组件,首先先遍历组件数组，通过每个组件的类型判断生产柱状图组件，折线组件，还是饼图组件。每个组件必须定义一个全局唯一的key值。data-grid为每一个组件绑定了其属性。下面会介绍具体的data-grid属性。&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; generateDOM = () =&amp;gt; {
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt; generateDOM = () =&amp;gt; {
     return _.map(this.state.widgets, (l, i) =&amp;gt; {
       let option;
       if (l.type === 'bar') {
@@ -90,18 +131,40 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
       );
     });
   };
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;5.通过addItem函数来新增组件。每个组件属性如下：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;- x: 组件在x轴坐标
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;- x: 组件在x轴坐标
 - y: 组件在y轴坐标
 - w: 组件宽度
 - h: 组件高度
 - i:  组件key值
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;addItem(type,widgetId) {
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;addItem(type,widgetId) {
     const addItem = {
       x: (this.state.widgets.length * 2) % (this.state.cols || 12),
       y: Infinity, // puts it at the bottom
@@ -118,17 +181,24 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
       },
     );
   };
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;6.通过onRemoveItem函数来移除增组件。&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;onRemoveItem(i) {
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;onRemoveItem(i) {
     console.log(this.state.widgets)
     this.setState({
       widgets: this.state.widgets.filter((item,index) =&amp;gt; index !=i)
     });
 
   }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h1 id=&quot;后记&quot;&gt;后记&lt;/h1&gt;
 
@@ -144,8 +214,8 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
 </description>
         <pubDate>Tue, 14 May 2019 00:00:00 +0800</pubDate>
-        <link>https://bilif.github.io//2019/05/14/React%E5%AE%9E%E7%8E%B0%E7%82%AB%E9%85%B7%E7%9A%84%E5%8F%AF%E6%8B%96%E6%8B%BD%E7%BD%91%E6%A0%BC%E5%B8%83%E5%B1%80/</link>
-        <guid isPermaLink="true">https://bilif.github.io//2019/05/14/React%E5%AE%9E%E7%8E%B0%E7%82%AB%E9%85%B7%E7%9A%84%E5%8F%AF%E6%8B%96%E6%8B%BD%E7%BD%91%E6%A0%BC%E5%B8%83%E5%B1%80/</guid>
+        <link>http://localhost:4000/2019/05/14/React%E5%AE%9E%E7%8E%B0%E7%82%AB%E9%85%B7%E7%9A%84%E5%8F%AF%E6%8B%96%E6%8B%BD%E7%BD%91%E6%A0%BC%E5%B8%83%E5%B1%80/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/05/14/React%E5%AE%9E%E7%8E%B0%E7%82%AB%E9%85%B7%E7%9A%84%E5%8F%AF%E6%8B%96%E6%8B%BD%E7%BD%91%E6%A0%BC%E5%B8%83%E5%B1%80/</guid>
         
         <category>React</category>
         
@@ -177,8 +247,9 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
 &lt;h6 id=&quot;2安装eslint包模块&quot;&gt;2.安装eslint包模块&lt;/h6&gt;
 &lt;p&gt;可以使用npm或cnpm（淘宝）来全局安装eslint。&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;npm install eslint -g
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;npm install eslint -g
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;h6 id=&quot;3安装sublimelinter插件&quot;&gt;3.安装sublimeLinter插件&lt;/h6&gt;
 &lt;p&gt;在sublime中打开package control（快捷键ctrl + shift + p）选择install package 然后在搜索框中搜索sublimeLinter插件，点击即可安装。
 &lt;img src=&quot;http://upload-images.jianshu.io/upload_images/4190280-8f7e583f8a9c2182.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;Paste_Image.png&quot; /&gt;&lt;/p&gt;
@@ -188,21 +259,99 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
 &lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/4190280-8cdff41f8c548a83.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;Paste_Image.png&quot; /&gt;&lt;/p&gt;
 &lt;h6 id=&quot;5集成sublimelinter的配置文件&quot;&gt;5.集成sublimeLinter的配置文件&lt;/h6&gt;
 &lt;p&gt;点击preferences ==&amp;gt; package settings ==&amp;gt; SublimeLinter ==&amp;gt; Settings-user 打开配置文件，查询paths关键字，找到paths下面的&lt;em&gt;windows&lt;/em&gt;字段，修改eslint的全局命令：&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&quot;paths&quot;: {
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&quot;paths&quot;: {
             &quot;linux&quot;: [],
             &quot;osx&quot;: [],
             &quot;windows&quot;: [
                 &quot;**/nodejs/eslint.cmd&quot;
             ]
         },
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;h6 id=&quot;6创建eslintrc语法规则文件&quot;&gt;6.创建.eslintrc语法规则文件&lt;/h6&gt;
 &lt;p&gt;当当当，终于到了最后一步拉。在自己的项目工程根目录下面创建.eslintrc语法规则配置文件。&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;方法一: 在命令行里输入&lt;code class=&quot;highlighter-rouge&quot;&gt;eslint --init&lt;/code&gt;命令进行自主选择创建文件。命令行会根据用户自己选择的风格来创建文件
 &lt;img src=&quot;http://upload-images.jianshu.io/upload_images/4190280-5bdb8bb2b64b83b5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;Paste_Image.png&quot; /&gt;&lt;/li&gt;
   &lt;li&gt;方法二: 在命令行里输入’echo {} &amp;gt; .eslintrc’命令直接创建.eslintrc文件。然后在.eslintrc文件中可以直接复制以下代码,具体的rule配置可以根据自己的项目选择性的修改：
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;{
 &quot;globals&quot;: {
   &quot;$&quot;: true,                                //zepto
   &quot;define&quot;: true,                           //requirejs
@@ -273,7 +422,7 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
   &quot;curly&quot;: 1                                //if、else、while、for代码块用{}包围
 }
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
     &lt;h6 id=&quot;7成功后界面预览&quot;&gt;7.成功后界面预览&lt;/h6&gt;
     &lt;p&gt;根据语法规则的配置，eslint会自动检测语法错误，并高亮显示，是不是很酷呢~
 &lt;img src=&quot;http://upload-images.jianshu.io/upload_images/4190280-e4da058dd1b91da6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;Paste_Image.png&quot; /&gt;&lt;/p&gt;
@@ -281,26 +430,34 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
     &lt;p&gt;通过自动化构建工具gulpe来集成eslint也是非常方便的。&lt;/p&gt;
     &lt;h6 id=&quot;1安装gulp-eslint包模块&quot;&gt;1.安装gulp-eslint包模块&lt;/h6&gt;
     &lt;p&gt;通过npm 或者 cnpm( 淘宝）来全局安装gulp-eslint 包模块.&lt;/p&gt;
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;npm install gulp-eslint -g
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;npm install gulp-eslint -g
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
     &lt;h6 id=&quot;2编写gulp配置文件&quot;&gt;2.编写gulp配置文件&lt;/h6&gt;
     &lt;p&gt;然后在自己的项目的gulp.js配置文件中编写eslint的任务即可。&lt;/p&gt;
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var eslint = require('gulp-eslint');
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;var eslint = require('gulp-eslint');
 gulp.task('eslint-task', function(){
     return gulp.src(['app/**/*.js']) //指定的校验路径
     .pipe(eslint({configFile:&quot;./.eslintrc&quot;})) //使用你的eslint校验文件
     .pipe(eslint.format())
  });
 gulp.task('default', ['eslint-task']);
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
     &lt;h1 id=&quot;总结&quot;&gt;总结&lt;/h1&gt;
     &lt;p&gt;使用eslint能够很大程度上避免程序员编码过程中出现的低级错误，提高自己的代码水平。一个项目中，代码的质量，健壮性尤为重要。eslint能够让前端工程工程化更进一步。&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 </description>
         <pubDate>Wed, 08 May 2019 00:00:00 +0800</pubDate>
-        <link>https://bilif.github.io//2019/05/08/ESLint%E8%AF%AD%E6%B3%95%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/</link>
-        <guid isPermaLink="true">https://bilif.github.io//2019/05/08/ESLint%E8%AF%AD%E6%B3%95%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/</guid>
+        <link>http://localhost:4000/2019/05/08/ESLint%E8%AF%AD%E6%B3%95%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/05/08/ESLint%E8%AF%AD%E6%B3%95%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/</guid>
         
         <category>ESLint</category>
         
