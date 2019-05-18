@@ -3,10 +3,10 @@
   <channel>
     <title>Bilif Blog</title>
     <description>Every failure is leading towards success.</description>
-    <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 17 May 2019 20:31:49 +0800</pubDate>
-    <lastBuildDate>Fri, 17 May 2019 20:31:49 +0800</lastBuildDate>
+    <link>https://bilif.github.io//</link>
+    <atom:link href="https://bilif.github.io//feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Sat, 18 May 2019 08:29:41 +0800</pubDate>
+    <lastBuildDate>Sat, 18 May 2019 08:29:41 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -214,8 +214,8 @@
 
 </description>
         <pubDate>Tue, 14 May 2019 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2019/05/14/React%E5%AE%9E%E7%8E%B0%E7%82%AB%E9%85%B7%E7%9A%84%E5%8F%AF%E6%8B%96%E6%8B%BD%E7%BD%91%E6%A0%BC%E5%B8%83%E5%B1%80/</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/05/14/React%E5%AE%9E%E7%8E%B0%E7%82%AB%E9%85%B7%E7%9A%84%E5%8F%AF%E6%8B%96%E6%8B%BD%E7%BD%91%E6%A0%BC%E5%B8%83%E5%B1%80/</guid>
+        <link>https://bilif.github.io//2019/05/14/React%E5%AE%9E%E7%8E%B0%E7%82%AB%E9%85%B7%E7%9A%84%E5%8F%AF%E6%8B%96%E6%8B%BD%E7%BD%91%E6%A0%BC%E5%B8%83%E5%B1%80/</link>
+        <guid isPermaLink="true">https://bilif.github.io//2019/05/14/React%E5%AE%9E%E7%8E%B0%E7%82%AB%E9%85%B7%E7%9A%84%E5%8F%AF%E6%8B%96%E6%8B%BD%E7%BD%91%E6%A0%BC%E5%B8%83%E5%B1%80/</guid>
         
         <category>React</category>
         
@@ -456,8 +456,8 @@ gulp.task('default', ['eslint-task']);
 &lt;/ul&gt;
 </description>
         <pubDate>Wed, 08 May 2019 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2019/05/08/ESLint%E8%AF%AD%E6%B3%95%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/05/08/ESLint%E8%AF%AD%E6%B3%95%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/</guid>
+        <link>https://bilif.github.io//2019/05/08/ESLint%E8%AF%AD%E6%B3%95%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/</link>
+        <guid isPermaLink="true">https://bilif.github.io//2019/05/08/ESLint%E8%AF%AD%E6%B3%95%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/</guid>
         
         <category>ESLint</category>
         
