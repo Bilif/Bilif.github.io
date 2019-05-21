@@ -5,8 +5,8 @@
     <description>Every failure is leading towards success.</description>
     <link>https://bilif.github.io//</link>
     <atom:link href="https://bilif.github.io//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 21 May 2019 16:19:28 +0800</pubDate>
-    <lastBuildDate>Tue, 21 May 2019 16:19:28 +0800</lastBuildDate>
+    <pubDate>Tue, 21 May 2019 16:27:11 +0800</pubDate>
+    <lastBuildDate>Tue, 21 May 2019 16:27:11 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -456,6 +456,7 @@ gulp.task('default', ['eslint-task']);
 &lt;/ul&gt;
 
 &lt;h1 id=&quot;后记&quot;&gt;后记&lt;/h1&gt;
+
 &lt;p&gt;&lt;strong&gt;感谢支持。若不足之处，欢迎大家指出，共勉。&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;如果觉得不错，记得 点赞，谢谢大家&lt;/strong&gt; 😂&lt;/p&gt;
