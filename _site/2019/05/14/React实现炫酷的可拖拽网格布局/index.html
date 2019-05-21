@@ -15,7 +15,8 @@
     
     <meta property="og:type" content="article">
     <meta property="og:description" content="前言
-最近老板让做一个自定义面板，能够在面板上自由的拖拽，新增，删除组件。组件可以是各种echarts图形，通过各个组件的拖拽组合，从而让用户自定义想要看到的面板。需求就是这样，那么撸起袖子开始干！😂
+做前端的小伙伴们可能会经常遇到做一个自定义dashboard这样的需求。
+那么什么是自定义dashboard呢？自定义dashboard其实就是一个自定义面板，用户能够在面板上自由的拖拽，新增，删除组件。组件可以是各种echarts图形，也可是各种数据表格。通过各个组件的拖拽组合，从而让用户自定义想要看到的面板。
 
 ">
     
@@ -240,19 +241,17 @@
                 post-container">
 
 				<h1 id="前言">前言</h1>
-<p>最近老板让做一个自定义面板，能够在面板上自由的拖拽，新增，删除组件。组件可以是各种echarts图形，通过各个组件的拖拽组合，从而让用户自定义想要看到的面板。需求就是这样，那么撸起袖子开始干！😂</p>
+<p>做前端的小伙伴们可能会经常遇到做一个自定义dashboard这样的需求。
+那么什么是自定义dashboard呢？自定义dashboard其实就是一个自定义面板，用户能够在面板上自由的拖拽，新增，删除组件。组件可以是各种echarts图形，也可是各种数据表格。通过各个组件的拖拽组合，从而让用户自定义想要看到的面板。</p>
 
 <h1 id="项目预览">项目预览</h1>
 <p><a href="https://bilif.github.io/react-drag-grid/">demo地址</a></p>
 
-<p><img src="https://user-gold-cdn.xitu.io/2019/5/14/16ab4e3123933a26?w=599&amp;h=321&amp;f=gif&amp;s=310674" alt="QQ20190514-131658-HD-compress.gif" /></p>
+<p><a href="https://github.com/Bilif/react-drag-grid">源码地址</a>
+<img src="https://user-gold-cdn.xitu.io/2019/5/21/16ada17b66481b69?w=599&amp;h=321&amp;f=gif&amp;s=310674" alt="QQ20190514-131658-HD-compress.gif" />
+组件可以动态添加，删除，可以自由拖拽，缩放。并且缩放后组件内部的echarts图表也会跟着缩放。</p>
 
-<p>组件可以动态添加，删除，可以自由拖拽，缩放。并且缩放后组件内部的echarts图表也会跟着缩放。</p>
-
-<h1 id="项目实战">项目实战</h1>
-
-<h5 id="技术架构">技术架构</h5>
-
+<h1 id="技术架构">技术架构</h1>
 <ol>
   <li>前端框架：<a href="https://react.docschina.org/">React</a></li>
   <li>UI库：<a href="https://ant.design/index-cn">Ant Design</a></li>
@@ -260,24 +259,28 @@
   <li>拖拽插件：<a href="https://github.com/STRML/react-grid-layout">react-grid-layout</a></li>
 </ol>
 
-<h5 id="技术实现">技术实现</h5>
-<p>1.使用npm安装react-grid-layout包</p>
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="nx">npm</span> <span class="nx">install</span> <span class="nx">react</span><span class="o">-</span><span class="nx">grid</span><span class="o">-</span><span class="nx">layout</span>
+<h1 id="技术实现">技术实现</h1>
+<h5 id="1-使用npm安装react-grid-layout包">1. 使用npm安装react-grid-layout包</h5>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>npm install react-grid-layout
 </pre></td></tr></tbody></table></code></pre></div></div>
 
-<p>2.在js文件中引入WidthProvider和Responsive组件，并且实例化响应式拖拽组件。在css文件中引入插件的样式。</p>
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<h5 id="2-插件声明及样式引入">2. 插件声明及样式引入</h5>
+<p>首先，在js文件中引入WidthProvider和Responsive组件，并且实例化响应式拖拽组件。
+其次，在css文件中引入插件的样式。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
-3
-4
-</pre></td><td class="rouge-code"><pre><span class="k">import</span> <span class="p">{</span> <span class="nx">WidthProvider</span><span class="p">,</span> <span class="nx">Responsive</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">"react-grid-layout"</span><span class="p">;</span>
-<span class="kd">const</span> <span class="nx">ResponsiveReactGridLayout</span> <span class="o">=</span> <span class="nx">WidthProvider</span><span class="p">(</span><span class="nx">Responsive</span><span class="p">);</span>
-<span class="p">@</span><span class="nd">import</span> <span class="s1">'~react-grid-layout/css/styles.css'</span><span class="p">;</span>
-<span class="p">@</span><span class="nd">import</span> <span class="s1">'~react-resizable/css/styles.css'</span><span class="p">;</span>
+</pre></td><td class="rouge-code"><pre>import { WidthProvider, Responsive } from "react-grid-layout";
+const ResponsiveReactGridLayout = WidthProvider(Responsive);
+</pre></td></tr></tbody></table></code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>@import '~react-grid-layout/css/styles.css';
+@import '~react-resizable/css/styles.css';
 </pre></td></tr></tbody></table></code></pre></div></div>
 
-<p>3.在React的render方法中渲染可拖拽布局。ResponsiveReactGridLayout组件有多个属性，这里举几个比较重要的说明一下：</p>
+<h5 id="3-render渲染">3. Render渲染</h5>
+<p>在React的render方法中渲染可拖拽布局。ResponsiveReactGridLayout组件有多个属性，这里举几个比较重要的说明一下：</p>
 <ul>
   <li>cols：定义了响应式布局划分成几列。</li>
   <li>rowHeight：响应式布局中组件的行高。</li>
@@ -305,8 +308,8 @@
      {this.generateDOM()}
 &lt;/ResponsiveReactGridLayout&gt;
 </pre></td></tr></tbody></table></code></pre></div></div>
-
-<p>4.通过generateDOM函数生成布局中的组件,首先先遍历组件数组，通过每个组件的类型判断生产柱状图组件，折线组件，还是饼图组件。每个组件必须定义一个全局唯一的key值。data-grid为每一个组件绑定了其属性。下面会介绍具体的data-grid属性。</p>
+<h5 id="4组件dom生成">4.组件DOM生成</h5>
+<p>通过generateDOM函数生成布局中的组件,首先先遍历组件数组，通过每个组件的类型判断生产柱状图组件，折线组件，还是饼图组件。每个组件必须定义一个全局唯一的key值。data-grid为每一个组件绑定了其属性。下面会介绍具体的data-grid属性。</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
@@ -360,20 +363,15 @@
     });
   };
 </pre></td></tr></tbody></table></code></pre></div></div>
-
-<p>5.通过addItem函数来新增组件。每个组件属性如下：</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-</pre></td><td class="rouge-code"><pre>- x: 组件在x轴坐标
-- y: 组件在y轴坐标
-- w: 组件宽度
-- h: 组件高度
-- i:  组件key值
-</pre></td></tr></tbody></table></code></pre></div></div>
+<h5 id="5-通过additem函数来新增组件">5. 通过addItem函数来新增组件。</h5>
+<p>每个组件属性如下：</p>
+<ul>
+  <li>x: 组件在x轴坐标</li>
+  <li>y: 组件在y轴坐标</li>
+  <li>w: 组件宽度</li>
+  <li>h: 组件高度</li>
+  <li>i:  组件key值</li>
+</ul>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -410,8 +408,7 @@
     );
   };
 </pre></td></tr></tbody></table></code></pre></div></div>
-
-<p>6.通过onRemoveItem函数来移除增组件。</p>
+<h5 id="6-通过onremoveitem函数来移除增组件">6. 通过onRemoveItem函数来移除增组件。</h5>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
@@ -427,14 +424,10 @@
 
   }
 </pre></td></tr></tbody></table></code></pre></div></div>
-
 <h1 id="后记">后记</h1>
-
 <p><strong>感谢支持。若不足之处，欢迎大家指出，共勉。</strong></p>
 
 <p><strong>如果觉得不错，记得 点赞，谢谢大家</strong> 😂</p>
-
-<p><a href="https://github.com/Bilif/react-drag-grid">源码地址</a></p>
 
 <blockquote>
   <p>欢迎关注 我的：<a href="https://bilif.github.io/">【Blog】</a><a href="https://github.com/Bilif">【Github】</a><a href="https://juejin.im/user/58b5198cac502e00589a6388">【掘金】</a><a href="https://www.jianshu.com/u/94a557704b3e">【简书】</a></p>
