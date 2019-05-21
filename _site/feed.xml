@@ -5,8 +5,8 @@
     <description>Every failure is leading towards success.</description>
     <link>https://bilif.github.io//</link>
     <atom:link href="https://bilif.github.io//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 18 May 2019 08:54:43 +0800</pubDate>
-    <lastBuildDate>Sat, 18 May 2019 08:54:43 +0800</lastBuildDate>
+    <pubDate>Tue, 21 May 2019 16:19:28 +0800</pubDate>
+    <lastBuildDate>Tue, 21 May 2019 16:19:28 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -454,6 +454,15 @@ gulp.task('default', ['eslint-task']);
     &lt;p&gt;使用eslint能够很大程度上避免程序员编码过程中出现的低级错误，提高自己的代码水平。一个项目中，代码的质量，健壮性尤为重要。eslint能够让前端工程工程化更进一步。&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;h1 id=&quot;后记&quot;&gt;后记&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;感谢支持。若不足之处，欢迎大家指出，共勉。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;如果觉得不错，记得 点赞，谢谢大家&lt;/strong&gt; 😂&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;欢迎关注 我的：&lt;a href=&quot;https://bilif.github.io/&quot;&gt;【Blog】&lt;/a&gt;&lt;a href=&quot;https://github.com/Bilif&quot;&gt;【Github】&lt;/a&gt;&lt;a href=&quot;https://juejin.im/user/58b5198cac502e00589a6388&quot;&gt;【掘金】&lt;/a&gt;&lt;a href=&quot;https://www.jianshu.com/u/94a557704b3e&quot;&gt;【简书】&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 </description>
         <pubDate>Wed, 08 May 2019 00:00:00 +0800</pubDate>
         <link>https://bilif.github.io//2019/05/08/ESLint%E8%AF%AD%E6%B3%95%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7/</link>
