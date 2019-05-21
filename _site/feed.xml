@@ -5,8 +5,8 @@
     <description>Every failure is leading towards success.</description>
     <link>https://bilif.github.io//</link>
     <atom:link href="https://bilif.github.io//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 21 May 2019 16:27:11 +0800</pubDate>
-    <lastBuildDate>Tue, 21 May 2019 16:27:11 +0800</lastBuildDate>
+    <pubDate>Tue, 21 May 2019 16:34:44 +0800</pubDate>
+    <lastBuildDate>Tue, 21 May 2019 16:34:44 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -426,16 +426,19 @@
     &lt;h6 id=&quot;7成功后界面预览&quot;&gt;7.成功后界面预览&lt;/h6&gt;
     &lt;p&gt;根据语法规则的配置，eslint会自动检测语法错误，并高亮显示，是不是很酷呢~
 &lt;img src=&quot;http://upload-images.jianshu.io/upload_images/4190280-e4da058dd1b91da6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;Paste_Image.png&quot; /&gt;&lt;/p&gt;
-    &lt;h1 id=&quot;gulp中如何集成eslint&quot;&gt;gulp中如何集成ESlint&lt;/h1&gt;
-    &lt;p&gt;通过自动化构建工具gulpe来集成eslint也是非常方便的。&lt;/p&gt;
-    &lt;h6 id=&quot;1安装gulp-eslint包模块&quot;&gt;1.安装gulp-eslint包模块&lt;/h6&gt;
-    &lt;p&gt;通过npm 或者 cnpm( 淘宝）来全局安装gulp-eslint 包模块.&lt;/p&gt;
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;gulp中如何集成eslint&quot;&gt;gulp中如何集成ESlint&lt;/h1&gt;
+&lt;p&gt;通过自动化构建工具gulpe来集成eslint也是非常方便的。&lt;/p&gt;
+&lt;h6 id=&quot;1安装gulp-eslint包模块&quot;&gt;1.安装gulp-eslint包模块&lt;/h6&gt;
+&lt;p&gt;通过npm 或者 cnpm( 淘宝）来全局安装gulp-eslint 包模块.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
 &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;npm install gulp-eslint -g
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-    &lt;h6 id=&quot;2编写gulp配置文件&quot;&gt;2.编写gulp配置文件&lt;/h6&gt;
-    &lt;p&gt;然后在自己的项目的gulp.js配置文件中编写eslint的任务即可。&lt;/p&gt;
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h6 id=&quot;2编写gulp配置文件&quot;&gt;2.编写gulp配置文件&lt;/h6&gt;
+&lt;p&gt;然后在自己的项目的gulp.js配置文件中编写eslint的任务即可。&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
 2
 3
 4
@@ -444,16 +447,14 @@
 7
 &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;var eslint = require('gulp-eslint');
 gulp.task('eslint-task', function(){
-    return gulp.src(['app/**/*.js']) //指定的校验路径
-    .pipe(eslint({configFile:&quot;./.eslintrc&quot;})) //使用你的eslint校验文件
-    .pipe(eslint.format())
+      return gulp.src(['app/**/*.js']) //指定的校验路径
+      .pipe(eslint({configFile:&quot;./.eslintrc&quot;})) //使用你的eslint校验文件
+      .pipe(eslint.format())
  });
 gulp.task('default', ['eslint-task']);
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-    &lt;h1 id=&quot;总结&quot;&gt;总结&lt;/h1&gt;
-    &lt;p&gt;使用eslint能够很大程度上避免程序员编码过程中出现的低级错误，提高自己的代码水平。一个项目中，代码的质量，健壮性尤为重要。eslint能够让前端工程工程化更进一步。&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h1 id=&quot;总结&quot;&gt;总结&lt;/h1&gt;
+&lt;p&gt;使用eslint能够很大程度上避免程序员编码过程中出现的低级错误，提高自己的代码水平。一个项目中，代码的质量，健壮性尤为重要。eslint能够让前端工程工程化更进一步。&lt;/p&gt;
 
 &lt;h1 id=&quot;后记&quot;&gt;后记&lt;/h1&gt;
 
