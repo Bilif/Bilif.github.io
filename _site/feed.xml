@@ -5,12 +5,12 @@
     <description>Every failure is leading towards success.</description>
     <link>https://bilif.github.io//</link>
     <atom:link href="https://bilif.github.io//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 21 May 2019 17:00:39 +0800</pubDate>
-    <lastBuildDate>Tue, 21 May 2019 17:00:39 +0800</lastBuildDate>
+    <pubDate>Tue, 21 May 2019 17:07:06 +0800</pubDate>
+    <lastBuildDate>Tue, 21 May 2019 17:07:06 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
-        <title>基于react-grid-layout实现的可视化拖拽布局</title>
+        <title>基于react-grid-layout实现可视化拖拽</title>
         <description>&lt;h1 id=&quot;前言&quot;&gt;前言&lt;/h1&gt;
 &lt;p&gt;最近老板让做一个自定义面板，能够在面板上自由的拖拽，新增，删除组件。组件可以是各种echarts图形，通过各个组件的拖拽组合，从而让用户自定义想要看到的面板。需求就是这样，那么撸起袖子开始干！😂&lt;/p&gt;
 
